@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - ./volumes/db/lib:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: 1oqBnBpJwGzZNSdfmH4oOicab2h75WaFrP1f3d1dSKB6JRvW
+      MYSQL_DATABASE: mattermost
+      MYSQL_USER: mmdbuser
+      MYSQL_PASSWORD: tveJEx3AaVbQkbROxmOrA1YeJvjH3POPg2E9OMjIiefiImFh

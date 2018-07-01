@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+
+  app:
+    image: alpine:3.6
+    ports:
+      - "8000:8000"
+    #args:
+    #  - edition=team
+    volumes:
+      # This directory must have cert files if you want to enable SSL
+      - ./volumes/app/mattermost/config:/mattermost/config:rw
+      - ./volumes/app/mattermost/data:/mattermost/data:rw
+      - ./volumes/app/mattermost/logs:/mattermost/logs:rw
+      - ./volumes/app/bin/entrypoint.sh:/entrypoint.sh
+      - /etc/localtime:/etc/localtime
+    environment:
+      - MM_USERNAME=mmdbuser
+      - MM_PASSWORD=tveJEx3AaVbQkbROxmOrA1YeJvjH3POPg2E9OMjIiefiImFh
+      - MM_DBNAME=mattermost
+      - DB_HOST=maithanam.c.vast-math-202912.internal
+      - DB_PORT_NUMBER=3306
+      - PATH=${PATH}:/sbin:/bin:/mattermost/bin
+      - MM_VERSION=5.0.0
+      - edition=enterprise
+      - MM_CONFIG=/mattermost/config/config.json
+      - PUID=1002
+      - PGID=1003
+    user: root 
+    working_dir: /
+    entrypoint: /entrypoint.sh "mattermost"
