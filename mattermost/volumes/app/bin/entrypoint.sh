@@ -100,4 +100,4 @@ fi
 chown -R mattermost:mattermost /mattermost/config/config.json
 
 echo "Argument : $@"
-sudo -u mattermost  -- sh -c "echo "Current user is......$(whoami)";echo "Current directory....$(pwd)";cd /mattermost/i18n;pwd;"$@""
+sudo -u mattermost  -- sh -c 'echo "Current user is......$(whoami)";cd /mattermost/i18n;echo "Current directory....$(pwd)";mattermost'
